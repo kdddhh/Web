@@ -1,0 +1,38 @@
+<!DOCTYPE html> <!-- 문서 유형 선언 -->
+<html>
+	<head> <!-- 현재 html문서의 정보, 처리를 브라우저에 알려주는 역할 -->
+	<meta charset="UTF-8" /> <!-- 현재 html의 정보를 알려줌, 또한 셀프 클로징 태그는 종료태그가 없기 때문에 컨텐츠를 가질 수 없다 -->
+<title>calcfrom.html</title>
+</head>
+<body>
+	<h2>계산기 입력 양식</h2>
+	<hr />
+	
+	<form method = "POST" action = "/myWeb/CalcServlet"> <!-- html에서 유일하게 사용자 입력 정보를 포함하는 새로운 요청을 서버에게 보낼 수 있다 -->
+	<!-- 폼 태그는 메소드와 액션을 필수적으로 가져야 한다.
+		액션은 서버에 누가 요청을 처리할 것인가를 의미.
+		액션이 없으면 서버에게 현재 웹페이지를 다시 요청한다.
+		메소드는 요청방식을 의미.
+		브라우저의 주소 표시줄에 URL 입력: GET 방식의 요청
+	 -->
+	
+	<fieldset>
+		<legend>간단 계산기</legend>
+		<input type = "number" name = "num1" value = "0" />
+		<select name = "operator">
+			<option selected>+</option>
+			<option>-</option>
+			<option>*</option>
+			<option>/</option>
+		</select>
+		<input type = "number" name = "num2" value = "0" />
+		
+		<input type = "submit" value = "계산" />
+		<input type = "reset" value = "초기화" />
+	</fieldset>
+	</form>
+	
+	<hr />
+	
+</body>
+</html>
