@@ -17,24 +17,26 @@
 		}
 	</style>
 <body>
-	<table>	
-		<%
-			for(int i = 2; i <= 9; i++) {
-		%>		
-			<td>
-			<label><%= i + "단" %></label>
-			<br />
-		<%
-			for(int j = 1; j <= 9; j++) {
-		%>
-			<%= i + " * " + j + " = " + i * j %><br />	
-		<% 					
+	<table>
+		<tr>
+	<%
+		for(int i = 2; i <= 9; i++) {
+	%>		
+		<td>
+		<label><%= i + "단" %></label>
+		<br />
+	<%
+		for(int j = 1; j <= 9; j++) {
+	%>
+		<%= i + " * " + j + " = " + i * j %><br />
+	<% 					
 			}
-		%>
-			</td>
-		<% 
-			}
-		%>	
+	%>
+		</td>	
+	<%
+		}
+	%>		
+		</tr>
 	</table>
 </body>
 </html>
