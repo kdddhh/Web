@@ -1,5 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
+<%
+	String name = "long lee";
+%>
+
 <!DOCTYPE html>
 <html>
 <head>

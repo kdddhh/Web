@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0; 
+	box-sizing: border-box;
+	/* 브라우저 기본 여백을 0으로 맞춘다.*/
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	/* 바디 영역이 화면을 100% 사용한다 */
+}
+
+#header, #footer, #contents {
+	width: 80%;
+	margin: 10px auto; /* 화면의 가운데로 위치 */
+	border: 2px solid gray;
+	text-align: center;
+}
+
+#header, #footer {
+	height: 100px;	
+}
+
+#header {
+	line-height: 100px;
+}
+
+#left, #right {
+	width: 50%; /* 부모영역의 width에서 50% */
+	height: 400px;
+}
+
+#left {
+	float: left;
+	border-right: 2px solid gray;
+}
+
+#right {
+	float: right;
+}
+
+#contents {
+	height: 400px;
+	line-height: 50px;
+}
+
+#footer {
+	clear: both;
+	line-height: 40px;
+}
+
+
+
