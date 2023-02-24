@@ -1,4 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UFT-8"
+		 pageEncoding = "EUC-KR"
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +11,7 @@
 <body>
 	<%
 		for(int i = 0; i < 10; i++) {
-			out.println(i + "<br />"); //ì—¬ê¸°ì„œì˜ printlnëŠ” ì†ŒìŠ¤ì½”ë“œì˜ ê°œí–‰íš¨ê³¼ì´ë‹¤. ì¶œë ¥ê²°ê³¼ì˜ ê°œí–‰ì´ ì•„ë‹˜
+			out.println(i + "<br />"); //¿©±â¼­ÀÇ println´Â ¼Ò½ºÄÚµåÀÇ °³ÇàÈ¿°úÀÌ´Ù. Ãâ·Â°á°úÀÇ °³ÇàÀÌ ¾Æ´Ô
 		}
 	%>
 </body>
