@@ -12,7 +12,7 @@
 		}
 		
 		td {
-			padding: 5px;
+			padding: 8px;
 			text-align: center;
 		}
 	</style>
@@ -21,22 +21,29 @@
 		<tr>
 	<%
 		for(int i = 2; i <= 9; i++) {
-	%>		
-		<td>
-		<label><%= i + "단" %></label>
-		<br />
-	<%
-		for(int j = 1; j <= 9; j++) {
-	%>
-		<%= i + " * " + j + " = " + i * j %><br />
-	<% 					
-			}
-	%>
-		</td>	
+	%>	
+		<th><%= i + "단" %></th>
 	<%
 		}
-	%>		
+	%>	
 		</tr>
+		<tr>	
+	<%
+		for(int i = 2; i <= 9; i++) {
+	%>
+		<td>
+	<% 
+			for(int j = 1; j <= 9; j++) {
+	%>				
+		<%= i + " * " + j + " = " + i * j %><br />				
+	<% 	
+			}
+	%>
+		</td>
+	<%
+		}
+	%>	
+		</tr>	
 	</table>
 </body>
 </html>
