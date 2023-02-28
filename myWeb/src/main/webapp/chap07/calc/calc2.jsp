@@ -9,6 +9,7 @@
 
 <jsp:useBean id = "calc" class = "chap07.Calc" scope = "page" />
 <jsp:setProperty property="*" name="calc" />
+<!-- setProperty는 기본 자료형 한해서 자동으로 형변환해준다. 그래서 Calc의 num1, num2를 int로 선언함 -->
 
 <%
 		result = calc.calcResult();
