@@ -1,12 +1,20 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"
+	import = "chap07.*"
+%>
+
+<%	
+	int result = 0;
+	if(request.getMethod().equals("POST")) {
+%>
 
 <jsp:useBean id = "calc" class = "chap07.Calc" scope = "page" />
 <jsp:setProperty property="*" name="calc" />
 
 <%
-	int result = calc.calcResult();
-%>   
-    
+		result = calc.calcResult();
+	}
+%>
+
 <!DOCTYPE html> 
 <html>
 	<head> 
