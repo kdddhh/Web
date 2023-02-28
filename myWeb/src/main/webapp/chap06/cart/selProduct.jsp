@@ -1,18 +1,42 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"
+		import = "java.util.*"
+%>
+
+<%
+	String script = "";	
+
+	if(request.getMethod().equals("POST")) {
+		request.setCharacterEncoding("UTF-8");
+		String product = request.getParameter("product");
+		
+		if(session.getAttribute("productList") == null) {
+			session.setAttribute("productList", new ArrayList<String>());
+		}
+		ArrayList<String> list = (ArrayList<String>)session.getAttribute("productList");
+		list.add(product);	
+%>
+	<script>
+		alert('<%= product %> 상품을 구매했습니다.');
+	</script>
+<%				
+	}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>selProduct.jsp</title>
 </head>
-
 <body>
 	<h1>상품 구매</h1>
 	<hr />
 	
 	<h4><%= session.getAttribute("userId") %>님을 환영합니다..^^</h4>
+	<button name = "logout" id = "logout" type = "reset">로그아웃</button>
+	<br />
 	
-	<form action = "add.jsp" method = "POST">
+	<form method = "POST">
 	<fieldset>
 		<legend>상품 선택</legend>
 		<select name = "product">
