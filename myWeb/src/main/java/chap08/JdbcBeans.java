@@ -31,6 +31,14 @@ public class JdbcBeans {
 		this.email = email;
 	}
 	
+	public String getUsername() {
+		return this.username;
+	}
+	
+	public String getEmail() {
+		return this.email;
+	}
+	
 	public void insert(JdbcData data) {
 	      this.sql = "insert into jdbc_test values(?, ?)";
 	      
