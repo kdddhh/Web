@@ -5,10 +5,6 @@ import java.util.ArrayList;
 
 public class JdbcBeans {
 	private String sql;
-	private String jdbc_driver = "oracle.jdbc.driver.OracleDriver";
-	private String jdbc_url = "jdbc:oracle:thin:@localhost:1521:XE";
-	private String user = "scott";
-	private String pwd = "tiger";
 	private Connection conn;
 	private Statement stmt;
 	private PreparedStatement pstmt;
@@ -19,8 +15,8 @@ public class JdbcBeans {
 	
 	public JdbcBeans() {
 		try {
-			Class.forName(jdbc_driver);
-			this.conn = DriverManager.getConnection(jdbc_url, user, pwd);
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			this.conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "scott", "tiger");
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -35,21 +31,13 @@ public class JdbcBeans {
 		this.email = email;
 	}
 	
-	public String getUsername() {
-		return this.username;
-	}
-	
-	public String getEmail() {
-		return this.email;
-	}
-	
-	public void insert() {
+	public void insert(JdbcData data) {
 	      this.sql = "insert into jdbc_test values(?, ?)";
 	      
 	      try {
 	         this.pstmt = this.conn.prepareStatement(sql);
-	         this.pstmt.setString(1, this.username);
-	         this.pstmt.setString(2, this.email);
+	         this.pstmt.setString(1, data.getDataUsername());
+	         this.pstmt.setString(2, data.getDataEmail());
 	         this.pstmt.executeUpdate();
 	      }
 	      catch (Exception e) {

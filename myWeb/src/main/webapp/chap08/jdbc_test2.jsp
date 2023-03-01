@@ -1,9 +1,25 @@
 <%@ page contentType="text/html; charset=UTF-8"
-	import = "java.sql.*"
+	import = "java.sql.*, chap08.*, java.util.*"
 %>
 
-<%
+<jsp:useBean id = "jdbcBeans" class = "chap08.JdbcBeans" scope = "page" />
+<jsp:setProperty property = "*" name = "jdbcBeans" />
 
+<%	
+	String str = "";
+	
+	if(request.getMethod().equals("POST")) {
+		request.setCharacterEncoding("UTF-8");
+		JdbcData data = new JdbcData(request.getParameter("username"), request.getParameter("email"));
+		jdbcBeans.insert(data);
+	}	
+
+	ArrayList<JdbcData> list = jdbcBeans.select();
+	for(JdbcData data : list) {
+		str += "<li>" + data.getDataUsername() + " | " + data.getDataEmail() + "</li>";
+	}	
+	
+	jdbcBeans.closeConnection();	
 %>
 
 <!DOCTYPE html>
@@ -33,7 +49,7 @@
 	<h3>등록 목록</h3>
 	
 	<ol>
-		<%= list %>
+		<%= str %>
 	</ol>
 	
 </body>
