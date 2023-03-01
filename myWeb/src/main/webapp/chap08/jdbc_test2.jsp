@@ -2,7 +2,7 @@
 	import = "java.sql.*, chap08.*, java.util.*"
 %>
 
-<jsp:useBean id = "jdbcBeans" class = "chap08.JdbcBeans" scope = "page" />
+<jsp:useBean id = "jdbcBeans" class = "chap08.JdbcBeans" scope = "request" />
 <jsp:setProperty property = "*" name = "jdbcBeans" />
 
 <%	
