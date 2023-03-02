@@ -1,32 +1,36 @@
 <%@ page contentType="text/html; charset=UTF-8"
-	import = "java.sql.*, chap08.*, java.util.*"
+	import = "chap08.*, java.util.*"
 %>
 
-<jsp:useBean id = "jdbcBeans" class = "chap08.JdbcBeans" scope = "request" />
-<jsp:setProperty property = "*" name = "jdbcBeans" />
-
-<%	
-	String str = "";
-	
+<%
 	if(request.getMethod().equals("POST")) {
 		request.setCharacterEncoding("UTF-8");
-		JdbcData data = new JdbcData(request.getParameter("username"), request.getParameter("email"));
-		jdbcBeans.insert(data);
+	}	
+%>
+
+<jsp:useBean id = "dao" class = "chap08.JdbcTestDAO" scope = "session" />
+<jsp:useBean id = "testDO" class = "chap08.JdbcTestDO" scope = "page" />
+<jsp:setProperty property = "*" name = "testDO" />
+
+<%	
+	if(request.getMethod().equals("POST")) {
+		dao.insertJdbcTest(testDO);
 	}	
 
-	ArrayList<JdbcData> list = jdbcBeans.select();
-	for(JdbcData data : list) {
-		str += "<li>" + data.getDataUsername() + " | " + data.getDataEmail() + "</li>";
+	ArrayList<JdbcTestDO> list = dao.selectAllJdbcTest();
+	String result = "";
+	
+	for(JdbcTestDO tdo : list) {
+		result += "<li>" + tdo.getUsername() + " | " + tdo.getEmail() + "</li>";
 	}	
 	
-	jdbcBeans.closeConnection();	
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>jdbc_test.jsp</title>
+	<title>jdbc_test2.jsp</title>
 </head>
 
 <body>
@@ -49,7 +53,7 @@
 	<h3>등록 목록</h3>
 	
 	<ol>
-		<%= str %>
+		<%= result %>
 	</ol>
 	
 </body>
