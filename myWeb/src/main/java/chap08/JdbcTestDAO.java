@@ -1,41 +1,38 @@
 package chap08;
 
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.*;
 
 public class JdbcTestDAO {
-
 	private Connection conn = null;
 	private Statement stmt = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	private String sql = null;
 	
-	public JdbcTestDAO() {	
+	public JdbcTestDAO() {
 		String jdbc_driver = "oracle.jdbc.driver.OracleDriver";
 		String jdbc_url = "jdbc:oracle:thin:@localhost:1521:XE";
 		String user = "scott";
 		String pwd = "tiger";
 		
 		try {
-		      Class.forName(jdbc_driver);
-		      conn = DriverManager.getConnection(jdbc_url, user, pwd);
-		   }
-		   catch (Exception e) {
-		      e.printStackTrace();
-		   }
+			Class.forName(jdbc_driver);
+		    conn = DriverManager.getConnection(jdbc_url, user, pwd);
+		}
+		catch (Exception e) {
+		    e.printStackTrace();
+		}
 	}
 	
-	public int insertJdbcTest(JdbcTestDO testDO) {
-		int rowCount = 0;
-		
-		 this.sql = "insert into jdbc_test values(?, ?)";
+	public void insert(JdbcTestDO DO) {
+		this.sql = "insert into jdbc_test values(?, ?)";
 		   
 	      try {
-	         pstmt = conn.prepareStatement(sql);
-	         pstmt.setString(1, testDO.getUsername());
-	         pstmt.setString(2, testDO.getEmail());
-	         pstmt.executeUpdate();
+	         this.pstmt = conn.prepareStatement(sql);
+	         this.pstmt.setString(1, DO.getUsername());
+	         this.pstmt.setString(2, DO.getEmail());
+	         this.pstmt.executeUpdate();
 	      }
 	      catch (Exception e) {
 	         e.printStackTrace();
@@ -50,26 +47,24 @@ public class JdbcTestDAO {
 	            e.printStackTrace();
 	         }
 	      }
-		
-		return rowCount;
 	}
 	
-	public ArrayList<JdbcTestDO> selectAllJdbcTest() {
+	public ArrayList<JdbcTestDO> select() {
 		ArrayList<JdbcTestDO> list = new ArrayList<JdbcTestDO>();
 		JdbcTestDO testDO = null;
 		
 		this.sql = "select * from jdbc_test";
 		   
 		   try {
-		      stmt = conn.createStatement();
-		      rs = stmt.executeQuery(sql);
+		      this.stmt = conn.createStatement();
+		      this.rs = stmt.executeQuery(sql);
 		      
-		      while(rs.next()) {
-		         testDO = new JdbcTestDO();
-		         testDO.setUsername(this.rs.getString("username"));
-		         testDO.setEmail(this.rs.getString("email"));
-		         
-		         list.add(testDO);
+		      while(this.rs.next()) {
+		    	 testDO = new JdbcTestDO();
+		    	 testDO.setUsername(this.rs.getString("username"));
+		    	 testDO.setEmail(this.rs.getString("email"));
+		    	 
+		    	 list.add(testDO);
 		      }
 		      
 		   }
@@ -92,12 +87,12 @@ public class JdbcTestDAO {
 	
 	public void closeConnection() {
 		try {
-		      if(!conn.isClosed()) {
-		         conn.close();
-		      }
-		   }
-		   catch (Exception e) {
-		      e.printStackTrace();
-		   }
+			if(!conn.isClosed()) {
+				conn.close();
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
