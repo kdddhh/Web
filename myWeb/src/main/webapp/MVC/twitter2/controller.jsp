@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"
-	import = "mvc.twitter.*, java.util.*"
-%>
+	import = "java.util.*, mvc.twitter.*"
+ %>
 
 <%
 	if(request.getMethod().equals("POST")) {
@@ -9,26 +9,29 @@
 %>
 
 <jsp:useBean id = "twitterDAO" class = "mvc.twitter.TwitterDAO" scope = "session" />
-<jsp:useBean id = "loginDO" class = "mvc.twitter.TwitterLoginDO" scope = "page" />
 <jsp:useBean id = "twitterDO" class = "mvc.twitter.TwitterDO" scope = "page" />
+<jsp:useBean id = "loginDO" class = "mvc.twitter.TwitterLoginDO" scope = "page" />
 <jsp:setProperty name = "loginDO" property = "*" />
 <jsp:setProperty name = "twitterDO" property = "message" />
 
-<%
+<%	
 	String viewPath = "/WEB-INF/views/twitter2/";
-	String command = request.getParameter("command");	
+	String command = request.getParameter("command");
 
 	if(session.getAttribute("id") == null) {
 		if(request.getMethod().equals("GET")) {
 			pageContext.forward(viewPath + "twitterLogin.jsp");
 		}
 		else if(request.getMethod().equals("POST")) {
-			TwitterLoginDO result = twitterDAO.checkLogin(loginDO);
-			if(result != null) {
-				session.setAttribute("id", result.getId());
-				session.setAttribute("name", result.getName());
+			TwitterLoginDO tDO = twitterDAO.checkLogin(loginDO);
+			
+			if(tDO != null) {
+				session.setAttribute("id", tDO.getId());
+				session.setAttribute("name", tDO.getName());
 				
 				response.sendRedirect("controller.jsp");
+				// session.setAttribute("list", twitterDAO.getAllTwitter());
+				// pageContext.forward(viewPath + "twitterList.jsp");
 			}
 			else {
 				pageContext.forward(viewPath + "twitterLogin.jsp");
@@ -46,11 +49,18 @@
 				twitterDAO.insertTwitter(twitterDO);
 			}
 			session.setAttribute("list", twitterDAO.getAllTwitter());
-			
 			pageContext.forward(viewPath + "twitterList.jsp");
 		}
 	}
 %>
+
+
+
+
+
+
+
+
 
 
 
