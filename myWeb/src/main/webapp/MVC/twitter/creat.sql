@@ -3,9 +3,9 @@ drop table twitter;
 drop table twitter_login;
 
 create table twitter_login (
-	id		varchar2(20) constraint twitter_login_id_pk primary key
-,	passwd	varchar2(20) constraint twitter_login_passwd_nn not null
-,	name	varchar2(15) constraint twitter_login_name_nn not null
+	id varchar2(20) constraint twitter_login_id_pk primary key
+,	passwd varchar2(20) constraint twitter_login_passwd_nn not null
+,	name varchar2(15) constraint twitter_login_name_nn not null
 );
 
 insert into twitter_login
@@ -22,10 +22,10 @@ commit;
 select * from twitter_login;
 
 create table twitter (
-	no			number(7)		constraint twitter_no_pk primary key
-,	id			varchar2(20)	constraint twitter_id_fk references twitter_login (id)
-,	message		varchar2(300)	constraint twitter_message_nn not null
-,	create_date	date			default sysdate
+	no number(7) constraint twitter_no_pk primary key
+,	id varchar2(20) constraint twitter_id_fk references twitter_login (id)
+,	message varchar2(300) constraint twitter_message_nn not null
+,	create_date date default sysdate
 );
 
 create sequence twitter_seq
