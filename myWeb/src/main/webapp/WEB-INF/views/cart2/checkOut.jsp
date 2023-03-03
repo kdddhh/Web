@@ -1,29 +1,28 @@
 <%@ page contentType="text/html; charset=UTF-8"
-	import = "java.util.*"
+	import="java.util.*"
 %>
 
 <%
 	/*
-		[ checkOut.jsp의 보완 사항 ]
-		1. 로그인 한 사용자만 이용할 수 있다.
-		2. 로그인 하지 않은 사용자의 접근은 로그인 페이지로 리다이렉팅 한다.
+		1. 로그인한 사용자만 접근할 수 있다
+		2. 로그인 하지 않은 사용자는 로그인 화면으로 보낸다.
 		3. 장바구니 비우기 기능 추가
-		4. 상품 구매 페이지(selProduct)로의 이동
+		4. 상품 구매 페이지 이동
 	*/
-
-	ArrayList<String> list = (ArrayList<String>)session.getAttribute("productList");	
-	String products = "";
-
-	if(list == null) {
-		products = "<h4>구매하신 상품이 없습니다.</h4>";
+	@SuppressWarnings("unchecked")
+	ArrayList<String> productList = (ArrayList<String>)session.getAttribute("productList");
+	String result = "<ol>";
+	
+	if(productList.isEmpty()) {
+		result = "<h5>선택하신 상품이 없습니다.</h5>";
 	}
 	else {
-		for(String product : list) {
-			products += "<h5>" + product + "</h5>";
+		for(String product : productList) {
+			result += "<li>" + product + "</li>";
 		}
-		
-		session.removeAttribute("productList");
+		result += "</ol>";
 	}
+
 %>
 
 <!DOCTYPE html>
@@ -31,13 +30,25 @@
 <head>
 	<meta charset="UTF-8">
 	<title>check.jsp</title>
+	
 </head>
 
 <body>
 	<h1>장바구니 확인</h1>
 	<hr />
 	
-	<%= products %>
+	<%= result %>
+	
+	<form method = "POST">
+		<input type = "hidden" name = "command" value = "clearCart" />
+		<input type = "submit" value = "장바구니 비우기" />
+	</form>
+	
+	<hr />
+	<h5>
+		<a href = "controller.jsp">상품 구매</a>
+		<!-- a 태그는 겟 방식으로 연결하는 것이고 로그인 상태라 바로 맨 밑의 else 문으로 연결 -->
+	</h5>
 	
 </body>
 </html>
