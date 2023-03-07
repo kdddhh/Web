@@ -7,9 +7,9 @@
 		request.setCharacterEncoding("UTF-8");
 	}
 
-	String command = request.getParameter("command");
 	String viewPath = "/WEB-INF/views/cart2/";
-	
+	String command = request.getParameter("command");
+
 	if(session.getAttribute("id") == null) {
 		if(request.getMethod().equals("GET")) {
 			pageContext.forward(viewPath + "login.jsp");
@@ -17,7 +17,6 @@
 		else if(request.getMethod().equals("POST")) {
 			String id = request.getParameter("id");
 			String passwd = request.getParameter("passwd");
-			
 			if(bean.checkLogin(id, passwd)) {
 				session.setAttribute("id", id);
 				pageContext.forward(viewPath + "selProduct.jsp");
@@ -34,12 +33,12 @@
 	else if(command != null && command.equals("addCart")) {
 		String product = request.getParameter("product");
 		bean.addProduct(product);
-		request.setAttribute("script", "alert('" + product + " 상품을 구매했습니다');");
+		request.setAttribute("script", "alert('" + product + "를 추가하였습니다.');");
 		
 		pageContext.forward(viewPath + "selProduct.jsp");
 	}
 	else if(command != null && command.equals("checkOut")) {
-		if(session.getAttribute("productist") == null) {
+		if(session.getAttribute("productList") == null) {
 			session.setAttribute("productList", bean.getProductList());
 		}
 		pageContext.forward(viewPath + "checkOut.jsp");
@@ -52,7 +51,6 @@
 		pageContext.forward(viewPath + "selProduct.jsp");
 	}
 %>
-
 
 
 

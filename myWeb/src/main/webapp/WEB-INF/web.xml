@@ -27,7 +27,7 @@
      Welcome to myWeb
   </description>
 
-<servlet>
+<servlet> <!-- 서블릿의 초기화파라미터 -->
 	<servlet-name>configEx</servlet-name>
 	<jsp-file>/chap06/config.jsp</jsp-file>
 	<init-param>
@@ -40,5 +40,15 @@
 	<servlet-name>configEx</servlet-name>
 	<url-pattern>/chap06/config.jsp</url-pattern>
 </servlet-mapping>
+
+<context-param> <!-- 어플리케이션의 초기화 파라미터 -->
+	<param-name>adminID</param-name>
+		<param-value>longlee</param-value>
+</context-param>
+
+<context-param>
+	<param-name>adminPasswd</param-name>
+		<param-value>6789</param-value>
+</context-param>
 
 </web-app>

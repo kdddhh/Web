@@ -18,11 +18,10 @@
 	}
 	else {
 		for(String product : productList) {
-			result += "<li>" + product + "</li>";
+			result += "<li>" + product + "</li>";		
 		}
 		result += "</ol>";
 	}
-
 %>
 
 <!DOCTYPE html>
