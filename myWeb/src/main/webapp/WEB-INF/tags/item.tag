@@ -4,7 +4,7 @@
 
 <jsp:useBean id = "product" class = "chap10.Product" />
 
-<h2><jsp:doBody /></h2>
+<h2><jsp:doBody /><!-- 시작 태그와 종료 태그 사이의 컨텐츠 --></h2>
 <hr />
 
 <h4>${title}</h4>
