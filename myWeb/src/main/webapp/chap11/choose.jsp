@@ -8,7 +8,7 @@
 </head>
 
 <body>
-	<h2>JSTL c:choose</h2>
+	<h2>JSTL c:choose ::: /myWeb/chap11/choose.jsp</h2>
 	<hr />
 	
 	<form>
