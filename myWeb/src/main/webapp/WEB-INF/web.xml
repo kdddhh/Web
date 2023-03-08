@@ -51,4 +51,8 @@
 		<param-value>6789</param-value>
 </context-param>
 
+<listener>
+	<listener-class>chap11.InitialMember</listener-class>
+</listener>
+
 </web-app>
