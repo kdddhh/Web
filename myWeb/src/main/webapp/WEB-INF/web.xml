@@ -27,7 +27,7 @@
      Welcome to myWeb
   </description>
 
-<servlet> <!-- 서블릿의 초기화파라미터 -->
+<servlet> <!-- 서블릿의 초기화파라미터(config) -->
 	<servlet-name>configEx</servlet-name>
 	<jsp-file>/chap06/config.jsp</jsp-file>
 	<init-param>
@@ -39,6 +39,21 @@
 <servlet-mapping>
 	<servlet-name>configEx</servlet-name>
 	<url-pattern>/chap06/config.jsp</url-pattern>
+</servlet-mapping>
+
+<!-- 새로운 초기화 파라미터 (config) -->
+<servlet>
+	<servlet-name>initParamEx</servlet-name>
+	<jsp-file>/chap13/initParam.jsp</jsp-file> <!-- 서블릿이라면 서블릿 클래스가 위치한 pull Path name, JSP라면 JSP가 위치한 경로 -->
+	<init-param>
+		<param-name>userName</param-name>
+		<param-value>손흥민</param-value>
+	</init-param>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>initParamEx</servlet-name>
+	<url-pattern>/chap13/initParamEx</url-pattern>
 </servlet-mapping>
 
 <context-param> <!-- 어플리케이션의 초기화 파라미터 -->
